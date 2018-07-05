@@ -17,14 +17,9 @@ pipeline {
             }
         }
 	stage('copy') {
-	    def remote = [:]
-    	    remote.name = '47.106.85.213'
-            remote.host = '47.106.85.213'
-            remote.user = 'root'
-            remote.allowAnyHosts = true
-            stage('Remote SSH') {
-                sshPut remote: remote, from: '/var/jenkins_home/workspace/demo2/dist', into: '/root/jenkins-data/workspace/githubTest'
-    	    }
+	    steps {
+		sh 'scp -r /var/jenkins_home/workspace/demo2@tmp/dist root@47.106.85.213:/root/jenkins-data/workspace/githubTest'
+	    }
 	}
     }
         
