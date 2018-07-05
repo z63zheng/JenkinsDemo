@@ -16,13 +16,16 @@ pipeline {
                 sh 'npm run build' 
             }
         }
+	stage('copy') {
+	    def remote = [:]
+    	    remote.name = '47.106.85.213'
+            remote.host = '47.106.85.213'
+            remote.user = 'root'
+            remote.allowAnyHosts = true
+            stage('Remote SSH') {
+                sshPut remote: remote, from: '/var/jenkins_home/workspace/demo2/dist', into: '/root/jenkins-data/workspace/githubTest'
+    	    }
+	}
     }
-    def remote = [:]
-    remote.name = 'test'
-    remote.host = '47.106.85.213'
-    remote.user = 'root'
-    remote.allowAnyHosts = true
-    stage('Remote SSH') {
-    sshPut remote: remote, from: '/var/jenkins_home/workspace/demo2/dist', into: '/root/jenkins-data/workspace/githubTest'
-    }    
+        
 }
