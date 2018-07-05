@@ -16,5 +16,10 @@ pipeline {
                 sh 'npm run build' 
             }
         }
+	stage('copy') {
+	    steps {
+		sh 'cp -ri /root/jenkins-data/workspace/demo2/dist /root/nginx'
+	    }
+	}
     }    
 }
