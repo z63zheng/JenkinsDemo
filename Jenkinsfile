@@ -4,6 +4,10 @@ pipeline {
             image 'node:9-alpine' 
             args '-p 3000:3000' 
         }
+	docker {
+	    image 'openssh-server'
+	    args '-y'
+        }
     }
     stages {
         stage('install') { 
