@@ -4,6 +4,8 @@ pipeline {
             image 'node:9-alpine' 
             args '-p 3000:3000' 
         }
+    }
+    agent {
 	docker {
 	    image 'openssh-server'
 	    args '-y'
