@@ -18,6 +18,7 @@ pipeline {
         }
 	stage('copy') {
 	    steps {
+		sh 'apt-get update && apt-get -y install openssh-client'
 		sh 'ftp /var/jenkins_home/workspace/demo2/dist root@47.106.85.213:/root/jenkins-data/workspace/githubTest'
 	    }
 	}
