@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    node {
     stages {
 	stage('build') {
 	    agent {
@@ -13,13 +13,12 @@ pipeline {
 		sh 'npm run build' 
 	    }
 	}
-	node {
-	    stage('copy') {
-	        steps {
-		    sh 'scp -r /var/jenkins_home/workspace/demo2/dist root@47.106.85.213:/root/jenkins-data/workspace/githubTest'
-	        }
+	stage('copy') {
+	    steps {
+		sh 'scp -r /var/jenkins_home/workspace/demo2/dist root@47.106.85.213:/root/jenkins-data/workspace/githubTest'
 	    }
-        }
+	}
+    }
     }
         
 }
