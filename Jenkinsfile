@@ -2,9 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:9-alpine' 
-            args '-p 3000:3000' 
-	    image 'openssh-server'
-	    args '-y'
+            args '-p 3000:3000'
         }
     }
     stages {
@@ -20,7 +18,7 @@ pipeline {
         }
 	stage('copy') {
 	    steps {
-		sh 'scp -r /var/jenkins_home/workspace/demo2@tmp/dist root@47.106.85.213:/root/jenkins-data/workspace/githubTest'
+		sh 'ftp /var/jenkins_home/workspace/demo2/dist root@47.106.85.213:/root/jenkins-data/workspace/githubTest'
 	    }
 	}
     }
