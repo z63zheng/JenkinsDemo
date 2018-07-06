@@ -13,11 +13,13 @@ pipeline {
 		sh 'npm run build' 
 	    }
 	}
-	stage('copy') {
-	    steps {
-		sh 'scp -r /var/jenkins_home/workspace/demo2/dist root@47.106.85.213:/root/jenkins-data/workspace/githubTest'
+	node {
+	    stage('copy') {
+	        steps {
+		    sh 'scp -r /var/jenkins_home/workspace/demo2/dist root@47.106.85.213:/root/jenkins-data/workspace/githubTest'
+	        }
 	    }
-	}
+        }
     }
         
 }
